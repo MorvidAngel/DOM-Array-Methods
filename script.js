@@ -25,11 +25,25 @@ async function getRandomUser() {
     addData(newUser);
 }
 
-// double everyones moeny
+// double everyones money
 function doubleMoney() {
     data = data.map(user => {
         return { ...user, money: user.money * 2 };
     });
+
+    updateDOM();
+}
+
+// sort users by richest
+function sortByRichest() {
+    data.sort((a, b) => b.money - a.money);
+
+    updateDOM();
+}
+
+// filteronly millionaires
+function showMillionaires() {
+    data = data.filter(user => user.money > 1000000);
 
     updateDOM();
 }
@@ -62,3 +76,5 @@ function formatMoney(number) {
 // event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
+sortBtn.addEventListener('click', sortByRichest);
+showMillionairesBtn.addEventListener('click', showMillionairesBtn);
